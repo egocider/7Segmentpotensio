@@ -1,0 +1,37 @@
+#define xd A0  
+int i;
+int angkas[10][7] = 
+{{ 0,0,0,0,0,0,1,}, // 0  
+{ 1,0,0,1,1,1,1 },  // 1  
+{ 0,0,1,0,0,1,0 },  // 2  
+{ 0,0,0,0,1,1,0 },  // 3  
+{ 1,0,0,1,1,0,0 },  // 4  
+{ 0,1,0,0,1,0,0 },  // 5  
+{ 0,1,0,0,0,0,0 },  // 6  
+{ 0,0,0,1,1,1,1 },  // 7  
+{ 0,0,0,0,0,0,0 },  // 8  
+{ 0,0,0,0,1,0,0 }}; // 9  
+
+ void setup()   
+ {   
+  // set pin modes  
+   for (i=2;i<=9;i++){
+    pinMode(i, OUTPUT);
+}  
+ }  
+
+ void loop()   
+ {  
+  int set = analogRead(xd);  
+  set = map(set,0,1023,0,9); 
+    
+  if(set<10) Num_Write(set);   
+ }  
+ void Num_Write(int j )   
+ {  
+  int pin= 2;  
+  for (int k=0; k < 7; k++) {  
+   digitalWrite(pin, angkas[j][k]);  
+   pin++;  
+  }  
+ }  
